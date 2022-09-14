@@ -1,22 +1,29 @@
 # :checkered_flag: NOME DO PROJETO
 
-Breve descrição do que o seu projeto faz.
+Horror Movies Database é uma base de dados grátis e de código aberto, sobre filmes e seriados, atualizado pelo apoio da comunidade, na qual a temática principal é sobre filmes de terror.
 
 ## :technologist: Membros da equipe
 
-Matrícula, nome e curso dos participantes.
+- Francisco Álisson Véras Damasceno, 473558, Design Digital
+- Gabriel Ilês, 493973, Ciência da Computação
 
 ## :people_holding_hands: Papéis ou tipos de usuário da aplicação
 
-Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: administrador, locador, locatario, usuário não logado.
-
-> Tenha em mente que obrigatoriamente a aplicação deve possuir funcionalidades acessíveis a todos os tipos de usuário e outra funcionalidades restritas a certos tipos de usuários.
+- Admin
+- Usuário logado
+- Visitante
 
 ## :spiral_calendar: Entidades ou tabelas do sistema
 
-Liste as principais entidades do sistema.
+- Usuário
+- Filme
+- Comentário
 
 ## :triangular_flag_on_post:	 Principais funcionalidades da aplicação
+
+- O adminstrador da loja pode: adicionar, remover e editar os filmes.
+- Usuário registrador pode listar os filmes e seus detalhes, assim como usuários não registrados. Adicionalmente, eles podem escrever comentários sobre os filmes.
+- Usuário não registrador poderão ver os filmes e os comentários feitos por usuários registrados.
 
 Descreve ou liste brevemente as principais funcionalidades da aplicação que será desenvolvida. Destaque a funcionalidades que serão acessévies a todos os usuários e aquelas restriras a usuários logados.
 
@@ -31,10 +38,12 @@ Descreve ou liste brevemente as principais funcionalidades da aplicação que se
 ## :desktop_computer: Tecnologias e frameworks utilizados
 
 **Frontend:**
-
-Lista as tecnologias, frameworks e bibliotecas utilizados.
+- VueJS v3.0, Vue-Router e Pinia.
+- Axios
+- Bootstrap
 
 **Backend:**
+- Strapi
 
 Lista as tecnologias, frameworks e bibliotecas utilizados.
 
@@ -44,9 +53,9 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 
 | Entidade| Criação | Leitura | Atualização | Remoção |
 | --- | --- | --- | --- | --- |
-| Entidade 1 | X |  X  |  | X |
-| Entidade 2 | X |    |  X | X |
-| Entidade 3 | X |    |  |  |
+| Usuário |  |  X  |  |  |
+| Filme | X |  X  |  X | X |
+| Comentário  | X |  X  | X | X |
 
 > Lembre-se que é necessário implementar o CRUD de pelo menos duas entidades.
 
@@ -54,5 +63,10 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 
 | Método HTTP | URL |
 | --- | --- |
-| GET | api/entidade1/|
-| POST | api/entidade2 |
+| POST | /auth/local |
+| GET | /users/me |
+| GET | /api/filmes |
+| GET | /api/filmes/{id} |
+| POST | /api/filmes |
+| PUT | /api/filmes/{id} |
+| DELETE | /api/filmes/{id} |
