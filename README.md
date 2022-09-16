@@ -5,7 +5,7 @@ Bu! é uma base de dados grátis e de código aberto, sobre filmes e seriados, a
 ## :technologist: Membros da equipe
 
 - Francisco Álisson Véras Damasceno, 473558, Design Digital
-- Gabriel Ileis, 493973, Ciência da Computação
+- Gabriel Ileis Araujo Vieira, 493973, Ciência da Computação
 
 ## :people_holding_hands: Papéis ou tipos de usuário da aplicação
 
