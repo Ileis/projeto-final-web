@@ -1,6 +1,6 @@
-# :checkered_flag: Booh!
+# :checkered_flag: Bu!
 
-Booh! é uma base de dados grátis e de código aberto, sobre filmes e seriados, atualizado pelo apoio da comunidade, na qual a temática principal é sobre filmes de terror.
+Bu! é uma base de dados grátis e de código aberto, sobre filmes e seriados, atualizado pelo apoio da comunidade, na qual a temática principal é sobre filmes de terror.
 
 ## :technologist: Membros da equipe
 
