@@ -1,0 +1,78 @@
+{
+  "movies": [
+    {
+      "id": "qwe",
+      "title": "The Black Phone",
+      "titleBr": "O Telefone Preto",
+      "cover": "https://www.cinematorio.com.br/wp-content/uploads/2022/08/theblackphone03.jpg",
+      "imgSrc": "https://cdn1.thespacecinema.it/-/media/tsc/2022/06/black-phone/locandina.png",
+      "description": "Finney Shaw, de 13 anos, é sequestrado por um sádico assassino mascarado e mantido em um porão à prova de som. Até que um telefone desconectado na parede começa a tocar, e ele logo descobre que pode ouvir as vozes das vítimas anteriores do maníaco.",
+      "userLike": "25000",
+      "userNotLike": "12500",
+      "studio": "Universal Pictures",
+      "director": "Scott Derrickson",
+      "year": "2020",
+      "genreId": "1"
+    },
+    {
+      "id": "wer",
+      "title": "It",
+      "titleBr": "It: A Coisa",
+      "cover": "https://cdn.tgdd.vn/Files/2020/12/25/1315981/review-phim-it-chu-he-ma-quai-2017-bom-tan-kinh-di-khong-the-bo-qua-202012251115444571.png",
+      "imgSrc": "https://upload.wikimedia.org/wikipedia/pt/thumb/8/82/It_2017.jpg/243px-It_2017.jpg",
+      "description": "Um grupo de crianças se une para investigar o misterioso desaparecimento de vários jovens em sua cidade. Eles descobrem que o culpado é Pennywise, um palhaço cruel que se alimenta de seus medos e cuja violência teve origem há vários séculos.",
+      "userLike": "14500",
+      "userNotLike": "9500",
+      "studio": "New Line Cinema",
+      "director": "Andy Muschietti",
+      "year": "2017",
+      "genreId": "2"
+    },
+    {
+      "id": "rty",
+      "title": "The Conjuring",
+      "titleBr": "Invocação do Mal",
+      "cover": "https://www.magazine-hd.com/apps/wp/wp-content/uploads/2019/12/conjuring.jpg",
+      "imgSrc": "https://m.media-amazon.com/images/M/MV5BMTM3NjA1NDMyMV5BMl5BanBnXkFtZTcwMDQzNDMzOQ@@._V1_FMjpg_UX1000_.jpg",
+      "description": "Os investigadores paranormais Ed e Lorraine Warren trabalham para ajudar a família aterrorizada por uma entidade demoníaca em sua fazenda.",
+      "userLike": "5000",
+      "userNotLike": "7500",
+      "studio": "New Line Cinema",
+      "director": "James Wan",
+      "year": "2013",
+      "genreId": "4"
+    },
+    {
+      "title": "Friday the 13th",
+      "titleBr": "Sexta-feira 13",
+      "cover": "",
+      "imgSrc": "https://br.web.img3.acsta.net/pictures/15/03/10/20/18/175541.jpg",
+      "description": "Um grupo de jovens adultos visita um acampamento chamado Crystal Lake, onde logo encontram o misterioso Jason Voorhees e suas intenções mortais.",
+      "userLike": "15400",
+      "userNotLike": "2500",
+      "studio": "Paramount",
+      "director": "Marcus Nispel",
+      "year": "2009",
+      "genreId": "1",
+      "id": "qahJzsK"
+    }
+  ],
+  "genres": [
+    {
+      "id": "1",
+      "name": "Terror"
+    },
+    {
+      "id": "2",
+      "name": "Horror"
+    },
+    {
+      "id": "3",
+      "name": "Crime"
+    },
+    {
+      "id": "4",
+      "name": "Thriller"
+    }
+  ]
+}
