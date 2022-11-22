@@ -9,7 +9,7 @@
               <div class="col-sm-6">
                 <label class="form-label">Title</label>
                 <input
-                  v-model="movie.title"
+                  v-model="movie.data.attributes.title"
                   required
                   type="text"
                   class="form-control"
@@ -19,7 +19,7 @@
               <div class="col-sm-6">
                 <label class="form-label">Title - BR</label>
                 <input
-                  v-model="movie.titleBr"
+                  v-model="movie.data.attributes.titleBr"
                   required
                   type="text"
                   class="form-control"
@@ -30,7 +30,7 @@
                 <label class="form-label">ImgSrc</label>
                 <div class="input-group">
                   <input
-                    v-model="movie.imgSrc"
+                    v-model="movie.data.attributes.imgSrc"
                     required
                     type="text"
                     class="form-control"
@@ -41,7 +41,7 @@
               <div class="col-12">
                 <label class="form-label">Description</label>
                 <input
-                  v-model="movie.description"
+                  v-model="movie.data.attributes.description"
                   required
                   type="text"
                   class="form-control"
@@ -51,7 +51,7 @@
               <div class="col-12">
                 <label class="form-label">Studio</label>
                 <input
-                  v-model="movie.studio"
+                  v-model="movie.data.attributes.studio"
                   required
                   type="text"
                   class="form-control"
@@ -61,7 +61,7 @@
               <div class="col-12">
                 <label class="form-label">Director</label>
                 <input
-                  v-model="movie.director"
+                  v-model="movie.data.attributes.director"
                   required
                   type="text"
                   class="form-control"
@@ -71,7 +71,7 @@
               <div class="col-12">
                 <label class="form-label">Year</label>
                 <input
-                  v-model="movie.year"
+                  v-model="movie.data.attributes.year"
                   required
                   type="text"
                   class="form-control"
@@ -81,7 +81,7 @@
               <div class="col-sm-6">
                 <label class="form-label">Usuarios Likes</label>
                 <input
-                  v-model="movie.userLike"
+                  v-model="movie.data.attributes.userLike"
                   type="text"
                   class="form-control"
                   required
@@ -92,7 +92,7 @@
               <div class="col-sm-6">
                 <label class="form-label">Usuários Delikes</label>
                 <input
-                  v-model="movie.userNotLike"
+                  v-model="movie.data.attributes.userNotLike"
                   required
                   type="text"
                   class="form-control"
@@ -102,7 +102,16 @@
 
               <div class="col-sm-6">
                 <label for="country" class="form-label">Gênero</label>
-                <select
+
+                <input
+                  v-model="movie.data.attributes.genre"
+                  required
+                  type="text"
+                  class="form-control"
+                  placeholder="Selecione o Gênero"
+                />
+
+                <!-- <select
                   class="form-select"
                   v-model="movie.genreId"
                   required
@@ -116,13 +125,13 @@
                   >
                     {{ genre.name }}
                   </option>
-                </select>
+                </select> -->
               </div>
 
               <div class="col-sm-6">
                 <label class="form-label">Duração</label>
                 <input
-                  v-model="movie.duration"
+                  v-model="movie.data.attributes.duration"
                   required
                   type="text"
                   class="form-control"
@@ -143,6 +152,7 @@
           </form>
         </div>
       </div>
+      <pre>{{ movie.data }}</pre>
       <!-- <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-dark">You Movie Cover</span>
@@ -168,17 +178,18 @@ export default {
       movieId: this.$route.params.movieId,
       loading: false,
       movie: {
-        title: "",
-        titleBr: "",
-        cover: "",
-        imgSrc: "",
-        userLike: "",
-        userNotLike: "",
-        studio: "",
-        director: "",
-        year: "",
-        duration: "",
-        genreId: "",
+        data: {
+          title: "",
+          titleBr: "",
+          imgSrc: "",
+          userLike: "",
+          userNotLike: "",
+          studio: "",
+          director: "",
+          year: "",
+          duration: "",
+          genre: "",
+        },
       },
       errorMessage: null,
       genres: [],
@@ -188,9 +199,9 @@ export default {
     try {
       this.loading = true;
       let response = await MovieService.getMovie(this.movieId);
-      let genreResponse = await MovieService.getAllGenres();
-      this.movie = response.data;
-      this.genres = genreResponse.data;
+      // let genreResponse = await MovieService.getAllGenres();
+      this.movie.data = response.data.data;
+      // this.genres = genreResponse.data;
       this.loading = false;
     } catch (error) {
       this.errorMessage = error;
@@ -201,6 +212,7 @@ export default {
     updateSubmit: async function () {
       try {
         let response = await MovieService.updateMovie(this.movie, this.movieId);
+
         if (response) {
           return this.$router.push("/");
         } else {

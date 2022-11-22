@@ -44,7 +44,9 @@
       </div>
     </div>
 
-    <div class="container" v-if="!loading && isDone()">
+    <!-- <div class="container" v-if="!loading && isDone()"> -->
+
+    <div class="container">
       <!-- MovieCard -->
       <div class="row">
         <div class="col-md-12">
@@ -53,46 +55,46 @@
           >
             <div class="col p-4 d-flex flex-column position-static">
               <strong class="d-inline-block mb-2 text-black-50">{{
-                movie.title
+                movie.attributes.title
               }}</strong>
-              <h3 class="mb-0">{{ movie.titleBr }}</h3>
+              <h3 class="mb-0">{{ movie.attributes.titleBr }}</h3>
               <div class="mb-4 text-muted">
-                {{ movie.description }}
+                {{ movie.attributes.description }}
               </div>
 
               <dl class="row">
                 <dt class="col-sm-3">Gênero</dt>
-                <dd class="col-sm-9">{{ genre.name }}</dd>
+                <dd class="col-sm-9">{{ movie.attributes.genre }}</dd>
 
                 <dt class="col-sm-3">Estúdio</dt>
-                <dd class="col-sm-9">{{ movie.studio }}</dd>
+                <dd class="col-sm-9">{{ movie.attributes.studio }}</dd>
 
                 <dt class="col-sm-3">Diretor</dt>
-                <dd class="col-sm-9">{{ movie.director }}</dd>
+                <dd class="col-sm-9">{{ movie.attributes.director }}</dd>
 
                 <dt class="col-sm-3">Ano</dt>
-                <dd class="col-sm-9">{{ movie.year }}</dd>
+                <dd class="col-sm-9">{{ movie.attributes.year }}</dd>
 
                 <dt class="col-sm-3">Duração</dt>
-                <dd class="col-sm-9">{{ movie.duration }} min</dd>
+                <dd class="col-sm-9">{{ movie.attributes.duration }} min</dd>
 
                 <dt class="col-sm-3">
                   Gostei <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                 </dt>
-                <dd class="col-sm-9">{{ movie.userLike }}</dd>
+                <dd class="col-sm-9">{{ movie.attributes.userLike }}</dd>
 
                 <dt class="col-sm-3">
                   Não gostei
                   <i class="fa fa-thumbs-down" aria-hidden="true"></i>
                 </dt>
-                <dd class="col-sm-9">{{ movie.userNotLike }}</dd>
+                <dd class="col-sm-9">{{ movie.attributes.userNotLike }}</dd>
               </dl>
             </div>
             <div class="col-auto d-none d-lg-block">
               <img
                 width="300"
                 height="100%"
-                :src="movie.imgSrc"
+                :src="movie.attributes.imgSrc"
                 class="contact-img-big"
               />
             </div>
@@ -307,11 +309,11 @@ export default {
     try {
       this.loading = true;
       let response = await MovieService.getMovie(this.movieId);
-      let genreResponse = await MovieService.getGenre(response.data);
-      let commentsResponse = await MovieService.getAllComments();
-      this.movie = response.data;
-      this.genre = genreResponse.data;
-      this.comments = commentsResponse.data;
+      //let genreResponse = await MovieService.getGenre(response.data);
+      //let commentsResponse = await MovieService.getAllComments();
+      this.movie = response.data.data;
+      // this.genre = genreResponse.data;
+      // this.comments = commentsResponse.data;
       this.loading = false;
     } catch (error) {
       this.errorMessage = error;

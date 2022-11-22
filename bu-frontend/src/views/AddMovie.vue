@@ -9,7 +9,7 @@
               <div class="col-sm-6">
                 <label class="form-label">Title</label>
                 <input
-                  v-model="movie.title"
+                  v-model="movie.data.title"
                   required
                   type="text"
                   class="form-control"
@@ -19,7 +19,7 @@
               <div class="col-sm-6">
                 <label class="form-label">Title - BR</label>
                 <input
-                  v-model="movie.titleBr"
+                  v-model="movie.data.titleBr"
                   required
                   type="text"
                   class="form-control"
@@ -30,7 +30,7 @@
                 <label class="form-label">ImgSrc</label>
                 <div class="input-group">
                   <input
-                    v-model="movie.imgSrc"
+                    v-model="movie.data.imgSrc"
                     required
                     type="text"
                     class="form-control"
@@ -41,7 +41,7 @@
               <div class="col-12">
                 <label class="form-label">Description</label>
                 <input
-                  v-model="movie.description"
+                  v-model="movie.data.description"
                   required
                   type="text"
                   class="form-control"
@@ -51,7 +51,7 @@
               <div class="col-12">
                 <label class="form-label">Studio</label>
                 <input
-                  v-model="movie.studio"
+                  v-model="movie.data.studio"
                   required
                   type="text"
                   class="form-control"
@@ -61,7 +61,7 @@
               <div class="col-12">
                 <label class="form-label">Director</label>
                 <input
-                  v-model="movie.director"
+                  v-model="movie.data.director"
                   required
                   type="text"
                   class="form-control"
@@ -71,7 +71,7 @@
               <div class="col-12">
                 <label class="form-label">Year</label>
                 <input
-                  v-model="movie.year"
+                  v-model="movie.data.year"
                   required
                   type="text"
                   class="form-control"
@@ -81,7 +81,7 @@
               <div class="col-sm-6">
                 <label class="form-label">Usuarios Likes</label>
                 <input
-                  v-model="movie.userLike"
+                  v-model="movie.data.userLike"
                   type="text"
                   class="form-control"
                   required
@@ -92,7 +92,7 @@
               <div class="col-sm-6">
                 <label class="form-label">Usuários Delikes</label>
                 <input
-                  v-model="movie.userNotLike"
+                  v-model="movie.data.userNotLike"
                   required
                   type="text"
                   class="form-control"
@@ -100,7 +100,7 @@
                 />
               </div>
 
-              <div class="col-sm-6">
+              <!-- <div class="col-sm-6">
                 <label class="form-label">Gênero</label>
                 <select
                   class="form-select"
@@ -117,16 +117,27 @@
                     {{ genre.name }}
                   </option>
                 </select>
-              </div>
+              </div> -->
 
               <div class="col-sm-6">
                 <label class="form-label">Duração</label>
                 <input
-                  v-model="movie.duration"
+                  v-model="movie.data.duration"
                   required
                   type="text"
                   class="form-control"
                   placeholder="Duração"
+                />
+              </div>
+
+              <div class="col-sm-6">
+                <label class="form-label">Gênero</label>
+                <input
+                  v-model="movie.data.genre"
+                  required
+                  type="text"
+                  class="form-control"
+                  placeholder="Gênero"
                 />
               </div>
             </div>
@@ -166,18 +177,19 @@ export default {
   data: function () {
     return {
       movie: {
-        title: "",
-        titleBr: "",
-        cover: "",
-        imgSrc: "",
-        description: "",
-        userLike: "",
-        userNotLike: "",
-        studio: "",
-        director: "",
-        year: "",
-        duration: "",
-        genreId: "",
+        data: {
+          title: "",
+          titleBr: "",
+          imgSrc: "",
+          description: "",
+          userLike: "",
+          userNotLike: "",
+          studio: "",
+          director: "",
+          year: "",
+          duration: "",
+          genre: "",
+        },
       },
       genres: [],
     };

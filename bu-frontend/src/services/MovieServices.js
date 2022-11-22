@@ -1,31 +1,31 @@
 import axios from "axios";
 
 export class MovieService {
-  static serverURL = `http://localhost:9000`;
+  static serverURL = `http://127.0.0.1:1337`;
 
   // Movies
   static getAllMovies() {
-    let dataURL = `${this.serverURL}/movies`;
+    let dataURL = `${this.serverURL}/api/movies`;
     return axios.get(dataURL);
   }
 
   static getMovie(movieId) {
-    let dataURL = `${this.serverURL}/movies/${movieId}`;
+    let dataURL = `${this.serverURL}/api/movies/${movieId}`;
     return axios.get(dataURL);
   }
 
   static createMovie(movie) {
-    let dataURL = `${this.serverURL}/movies/`;
+    let dataURL = `${this.serverURL}/api/movies`;
     return axios.post(dataURL, movie);
   }
 
   static updateMovie(movie, movieId) {
-    let dataURL = `${this.serverURL}/movies/${movieId}`;
+    let dataURL = `${this.serverURL}/api/movies/${movieId}`;
     return axios.put(dataURL, movie);
   }
 
   static deleteMovie(movieId) {
-    let dataURL = `${this.serverURL}/movies/${movieId}`;
+    let dataURL = `${this.serverURL}/api/movies/${movieId}`;
     return axios.delete(dataURL);
   }
 
