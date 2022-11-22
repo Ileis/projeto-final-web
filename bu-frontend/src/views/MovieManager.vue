@@ -68,12 +68,12 @@
         <div class="col">
           <div class="card mb-4 rounded-3 shadow-sm">
             <div class="card-header py-3">
-              <h4 class="my-0 fw-normal">{{ movie.title }}</h4>
+              <h4 class="my-0 fw-normal">{{ movie.attributes.title }}</h4>
             </div>
             <div class="card-body">
               <img
                 class="bd-placeholder-img mb-4 contact-img"
-                :src="movie.imgSrc"
+                :src="movie.attributes.imgSrc"
               />
               <div class="d-flex justify-content-center align-items-center">
                 <router-link
@@ -121,7 +121,7 @@ export default {
     try {
       this.loading = true;
       let response = await MovieService.getAllMovies();
-      this.movies = response.data;
+      this.movies = response.data.data;
       this.loading = false;
     } catch (error) {
       this.errorMessage = error;
@@ -134,11 +134,13 @@ export default {
         this.loading = true;
         let response = await MovieService.deleteMovie(movieId);
         if (response) {
+          console.log("Deletado com sucesso");
           let response = await MovieService.getAllMovies();
-          this.movies = response.data;
+          this.movies = response.data.data;
           this.loading = false;
         }
       } catch (error) {
+        console.log("Deu ruim");
         this.errorMessage = error;
         this.loading = false;
       }
