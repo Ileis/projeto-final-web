@@ -4,7 +4,7 @@
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Editar Filme</h4>
         <div class="card p-4">
-          <form @submit.prevent="updateSubmit()">
+          <form @submit.prevent="updateSubmit(movie)">
             <div class="row g-3">
               <div class="col-sm-6">
                 <label class="form-label">Title</label>
@@ -85,7 +85,6 @@
                   type="text"
                   class="form-control"
                   required
-                  placeholder="Usuários que gostaram"
                 />
               </div>
 
@@ -96,7 +95,6 @@
                   required
                   type="text"
                   class="form-control"
-                  placeholder="Usuários que não gostaram"
                 />
               </div>
 
@@ -108,18 +106,17 @@
                   required
                   type="text"
                   class="form-control"
-                  placeholder="Selecione o Gênero"
                 />
 
                 <!-- <select
                   class="form-select"
-                  v-model="movie.genreId"
+                  :placeholder="movie.genreId"
                   required
                   v-if="genres.length > 0"
                 >
                   <option value="">Selecione o Gênero</option>
                   <option
-                    :value="genre.id"
+                    v-model="genre.id"
                     v-for="genre of genres"
                     :key="genre.id"
                   >
@@ -135,7 +132,6 @@
                   required
                   type="text"
                   class="form-control"
-                  placeholder="Duração"
                 />
               </div>
             </div>
@@ -182,12 +178,16 @@ export default {
           title: "",
           titleBr: "",
           imgSrc: "",
+          description: "",
           userLike: "",
           userNotLike: "",
           studio: "",
           director: "",
           year: "",
           duration: "",
+          createdAt: "",
+          updatedAt: "",
+          publishedAt: "",
           genre: "",
         },
       },
@@ -199,8 +199,8 @@ export default {
     try {
       this.loading = true;
       let response = await MovieService.getMovie(this.movieId);
-      // let genreResponse = await MovieService.getAllGenres();
       this.movie.data = response.data.data;
+      // let genreResponse = await MovieService.getAllGenres();
       // this.genres = genreResponse.data;
       this.loading = false;
     } catch (error) {
@@ -209,9 +209,37 @@ export default {
     }
   },
   methods: {
-    updateSubmit: async function () {
+    updateSubmit: async function (any) {
       try {
-        let response = await MovieService.updateMovie(this.movie, this.movieId);
+        const newTitle = any.data.attributes.title;
+        const newTitleBr = any.data.attributes.titleBr;
+        const newImgSrc = any.data.attributes.imgSrc;
+        const newDescription = any.data.attributes.description;
+        const newUserLike = any.data.attributes.userLike;
+        const newUserNotLike = any.data.attributes.userNotLike;
+        const newStudio = any.data.attributes.studio;
+        const newDirector = any.data.attributes.director;
+        const newYear = any.data.attributes.year;
+        const newDuration = any.data.attributes.duration;
+        const newGenre = any.data.attributes.genre;
+
+        const payload = {
+          data: {
+            title: newTitle,
+            titleBr: newTitleBr,
+            imgSrc: newImgSrc,
+            description: newDescription,
+            userLike: newUserLike,
+            userNotLike: newUserNotLike,
+            studio: newStudio,
+            director: newDirector,
+            year: newYear,
+            duration: newDuration,
+            genre: newGenre,
+          },
+        };
+
+        let response = await MovieService.updateMovie(payload, this.movieId);
 
         if (response) {
           return this.$router.push("/");
