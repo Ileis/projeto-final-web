@@ -65,8 +65,8 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 | --- | --- |
 | POST | /auth/local |
 | GET | /users/me |
-| GET | /api/filmes |
-| GET | /api/filmes/{id} |
-| POST | /api/filmes |
-| PUT | /api/filmes/{id} |
-| DELETE | /api/filmes/{id} |
+| GET | /api/movies |
+| GET | /api/movies/{id} |
+| POST | /api/movies |
+| PUT | /api/movies/{id} |
+| DELETE | /api/movies/{id} |
