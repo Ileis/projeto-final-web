@@ -109,15 +109,18 @@
             <div class="card-header">ID: #{{ comment.id }}</div>
             <div class="card-body">
               <blockquote class="blockquote mb-0">
-                <p>{{ comment.comment }}</p>
+                <p>{{ comment.attributes.comment }}</p>
                 <footer>
                   <button
                     type="submit"
                     class="btn btn-dark"
                     v-on:click="isLikeComment(comment)"
                   >
-                    <i class="fa fa-heart" v-if="comment.liked"></i>
-                    <i class="fa fa-heartbeat" v-if="!comment.liked"></i>
+                    <i class="fa fa-heart" v-if="comment.attributes.liked"></i>
+                    <i
+                      class="fa fa-heartbeat"
+                      v-if="!comment.attributes.liked"
+                    ></i>
                   </button>
                   <button
                     class="btn btn-info my-1"
@@ -137,6 +140,8 @@
           </div>
         </div>
       </div>
+
+      <pre>{{ comments }}</pre>
 
       <!-- AddComment -->
       <div class="row mt-3">
@@ -177,7 +182,7 @@
                 <label class="form-label">Insira seu comentário</label>
                 <input
                   type="text"
-                  v-model="comment.comment"
+                  v-model="comment.data.comment"
                   required
                   class="form-control"
                 />
@@ -214,61 +219,51 @@
         v-if="visibleEdit"
         style="display: block"
       >
-        <div
-          class="modal-dialog"
-          role="document"
-          v-for="comment in comments"
-          :key="comment"
-        >
-          <div
-            class="modal-content"
-            v-if="checkEditComments(comment, movieId, commentId)"
-          >
-            <form @submit.prevent="updateComment(comment.id)">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">
-                  Editar comentário
-                </h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  @click="openCloseModalEdit()"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <label class="form-label">Edite seu comentário</label>
-                <input
-                  type="text"
-                  v-model="editComment.comment"
-                  v-bind:placeholder="comment.comment"
-                  required
-                  class="form-control"
-                />
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  @click="openCloseModalEdit()"
-                >
-                  Fechar
-                </button>
-                <button
-                  type="submit"
-                  class="btn btn-primary"
-                  value="Atualizar"
-                  data-dismiss="modal"
-                  @submit="openCloseModalEdit()"
-                >
-                  Atualizar
-                </button>
-              </div>
-            </form>
-          </div>
+        <div class="modal-content" v-if="comment.data.id">
+          <form @submit.prevent="updateComment(comment.data.id)">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">
+                Editar comentário
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+                @click="openCloseModalEdit()"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <label class="form-label">Edite seu comentário</label>
+              <input
+                type="text"
+                v-model="editComment.comment"
+                v-bind:placeholder="comment.comment"
+                required
+                class="form-control"
+              />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                @click="openCloseModalEdit()"
+              >
+                Fechar
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                value="Atualizar"
+                data-dismiss="modal"
+                @submit="openCloseModalEdit()"
+              >
+                Atualizar
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -276,7 +271,7 @@
 </template>
 
 <script>
-import { MovieService } from "@/services/MovieServices";
+import { MovieService, CommentService } from "@/services/MovieServices";
 import SpinnerBar from "@/components/SpinnerBar.vue";
 
 export default {
@@ -285,7 +280,6 @@ export default {
   data: function () {
     return {
       movieId: this.$route.params.movieId,
-      commentId: "",
       loading: false,
       visibleAdd: false,
       visibleEdit: false,
@@ -294,9 +288,11 @@ export default {
       genre: {},
       comments: [],
       comment: {
-        movieId: this.$route.params.movieId,
-        comment: "",
-        liked: false,
+        data: {
+          movieId: this.$route.params.movieId,
+          comment: "",
+          liked: false,
+        },
       },
       editComment: {
         movieId: this.$route.params.movieId,
@@ -309,11 +305,9 @@ export default {
     try {
       this.loading = true;
       let response = await MovieService.getMovie(this.movieId);
-      //let genreResponse = await MovieService.getGenre(response.data);
-      //let commentsResponse = await MovieService.getAllComments();
+      let commentsResponse = await CommentService.getAllComments();
       this.movie = response.data.data;
-      // this.genre = genreResponse.data;
-      // this.comments = commentsResponse.data;
+      this.comments = commentsResponse.data.data;
       this.loading = false;
     } catch (error) {
       this.errorMessage = error;
@@ -339,10 +333,10 @@ export default {
     },
     submitComment: async function () {
       try {
-        let response = await MovieService.createComment(this.comment);
+        let response = await CommentService.createComment(this.comment);
         if (response) {
-          let response = await MovieService.getAllComments();
-          this.comments = response.data;
+          let response = await CommentService.getAllComments();
+          this.comments = response.data.data;
           this.openCloseModal();
           return this.$router.push(`/movies/view/${this.movieId}`);
         } else {
@@ -352,15 +346,25 @@ export default {
         console.log(error);
       }
     },
-    updateComment: async function (commentId) {
-      console.log(this.editComment, commentId); // Atualizar comentários ainda falta
+    updateComment: async function (any) {
       try {
-        let response = await MovieService.updateComment(
-          this.editComment,
-          commentId
+        const newMovieId = any.data.id;
+        const newComment = any.data.attributes.comment;
+        const newLiked = false;
+
+        const payload = {
+          data: {
+            movieId: newMovieId,
+            comment: newComment,
+            liked: newLiked,
+          },
+        };
+        let response = await CommentService.updateComment(
+          payload,
+          this.commentId
         );
         if (response) {
-          let response = await MovieService.getAllComments();
+          let response = await CommentService.getAllComments();
           this.comments = response.data;
           this.openCloseModalEdit();
           return this.$router.push(`/movies/view/${this.movieId}`);
@@ -374,10 +378,10 @@ export default {
     clickDeleteComment: async function (commentId) {
       try {
         this.loading = true;
-        let response = await MovieService.deleteComment(commentId);
+        let response = await CommentService.deleteComment(commentId);
         if (response) {
-          let response = await MovieService.getAllComments();
-          this.comments = response.data;
+          let response = await CommentService.getAllComments();
+          this.comments = response.data.data;
           this.loading = false;
         }
       } catch (error) {
@@ -386,16 +390,14 @@ export default {
       }
     },
     checkComments(comment, movieId) {
-      if (comment.movieId == movieId) {
-        // qwe === router.id qwe
+      if (comment.attributes.movieId == movieId) {
         return true;
-        // 110 ===
       }
       return false;
     },
     checkEditComments(comment, movieId, commentId) {
-      if (comment.movieId == movieId) {
-        if (comment.id == commentId) {
+      if (comment.data.attributes.movieId == movieId) {
+        if (comment.data.id == commentId) {
           return true;
         }
         return false;

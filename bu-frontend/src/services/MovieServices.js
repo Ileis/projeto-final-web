@@ -28,54 +28,34 @@ export class MovieService {
     let dataURL = `${this.serverURL}/api/movies/${movieId}`;
     return axios.delete(dataURL);
   }
+}
 
-  // Genres
-  static getAllGenres() {
-    let dataURL = `${this.serverURL}/genres`;
-    return axios.get(dataURL);
-  }
-
-  static getGenre(movie) {
-    let genreId = movie.genreId;
-    let dataURL = `${this.serverURL}/genres/${genreId}`;
-    return axios.get(dataURL);
-  }
-
-  // Groups
-  static getAllGroups() {
-    let dataURL = `${this.serverURL}/groups`;
-    return axios.get(dataURL);
-  }
-
-  static getGroup(movie) {
-    let groupId = movie.groupId;
-    let dataURL = `${this.serverURL}/groups/${groupId}`;
-    return axios.get(dataURL);
-  }
+export class CommentService {
+  static serverURL = `http://127.0.0.1:1337`;
 
   // Comments
   static getAllComments() {
-    let dataURL = `${this.serverURL}/comments`;
+    let dataURL = `${this.serverURL}/api/comments`;
     return axios.get(dataURL);
   }
 
   static getComment(commentId) {
-    let dataURL = `${this.serverURL}/comments/${commentId}`;
+    let dataURL = `${this.serverURL}/api/comments/${commentId}`;
     return axios.get(dataURL);
   }
 
   static createComment(comment) {
-    let dataURL = `${this.serverURL}/comments/`;
+    let dataURL = `${this.serverURL}/api/comments/`;
     return axios.post(dataURL, comment);
   }
 
   static updateComment(comment, commentId) {
-    let dataURL = `${this.serverURL}/comments/${commentId}`;
+    let dataURL = `${this.serverURL}/api/comments/${commentId}`;
     return axios.put(dataURL, comment);
   }
 
   static deleteComment(commentId) {
-    let dataURL = `${this.serverURL}/comments/${commentId}`;
+    let dataURL = `${this.serverURL}/api/comments/${commentId}`;
     return axios.delete(dataURL);
   }
 }
