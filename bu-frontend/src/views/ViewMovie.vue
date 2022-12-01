@@ -285,6 +285,7 @@ export default {
       try {
         let response = await CommentService.createComment(this.comment);
         if (response) {
+          this.comment.data.comment = "";
           let response = await CommentService.getAllComments();
           this.comments = response.data.data;
           this.openCloseModal();
