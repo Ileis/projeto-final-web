@@ -1,5 +1,7 @@
 <template>
   <div class="container mt-3">
+
+    <!-- Header -->
     <div class="row">
       <div class="col">
         <p class="h3 text-dark fw-bold">
@@ -47,7 +49,6 @@
   </div>
 
   <!-- ErrorMessage -->
-
   <div v-if="!loading && errorMessage">
     <div class="container mt-3">
       <div class="row">
@@ -58,58 +59,35 @@
     </div>
   </div>
 
+  <!-- Movie Cards -->
   <div class="container py-3" v-if="movies.length > 0">
     <div class="row">
       <div
         class="col-md-3 mb-3 text-center"
         v-for="movie in movies"
-        :key="movie"
-      >
-        <div class="col">
-          <div class="card mb-4 rounded-3 shadow-sm">
-            <div class="card-header py-3">
-              <h4 class="my-0 fw-normal">{{ movie.attributes.title }}</h4>
-            </div>
-            <div class="card-body">
-              <img
-                class="bd-placeholder-img mb-4 contact-img"
-                :src="movie.attributes.imgSrc"
-              />
-              <div class="d-flex justify-content-center align-items-center">
-                <router-link
-                  :to="`/movies/view/${movie.id}`"
-                  class="btn btn-warning my-1"
-                >
-                  <i class="fa fa-eye"></i>
-                </router-link>
-                <router-link
-                  :to="`/movies/edit/${movie.id}`"
-                  class="btn btn-info my-1"
-                >
-                  <i class="fa fa-pen"></i>
-                </router-link>
-                <button
-                  class="btn btn-danger my-1"
-                  @click="clickDeleteMovie(movie.id)"
-                >
-                  <i class="fa fa-trash"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        :key="movie">
+
+        <MovieCard
+        :title="movie.attributes.title"
+        :imgSrc="movie.attributes.imgSrc"
+        :id="movie.id"
+        :clickDeleteMovie="clickDeleteMovie"
+        />
+
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
 import { MovieService } from "@/services/MovieServices";
 import SpinnerBar from "../components/SpinnerBar.vue";
+import MovieCard from "../components/MovieCard.vue"
 
 export default {
   name: "MovieManager",
-  components: { SpinnerBar },
+  components: { SpinnerBar , MovieCard},
   data: function () {
     return {
       loading: false,

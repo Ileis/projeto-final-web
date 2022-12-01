@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbu_backend_v_2=self.webpackChunkbu_backend_v_2||[]).push([[4299],{9683:(a,_,e)=>{e.r(_),e.d(_,{default:()=>P});var t=e(67294),n=e(68547),i=e.n(n),s=e(87751),E=e(67375);const P=()=>t.createElement(n.CheckPagePermissions,{permissions:s.Z.settings["api-tokens"].create},t.createElement(E.Z,null))}}]);
