@@ -75,7 +75,7 @@
             :commentText="comment.attributes.comment"
             :id="comment.id"
             :isLikeComment="isLikeComment"
-            :liked="comment.attributes.liked"
+            :liked="comment.liked"
             :openCloseModalEdit="openCloseModalEdit"
             />
 

@@ -11,7 +11,7 @@
                     <!-- Like comment -->
                     <button
                         type="submit"
-                        class="btn btn-dark"
+                        class="btn btn-dark m-1"
                         v-on:click="isLikeComment(comment)">
 
                         <i class="fa fa-heart" v-if="liked"></i>
@@ -23,14 +23,14 @@
 
                     <!-- Eddit comment -->
                     <button
-                        class="btn btn-info my-1"
+                        class="btn btn-info m-1"
                         @click="openCloseModalEdit(comment.attributes, id)">
                         <i class="fa fa-pen"></i>
                     </button>
 
                     <!-- Delete comment -->
                     <button
-                        class="btn btn-danger my-1"
+                        class="btn btn-danger m-1"
                         @click="clickDeleteComment(id)">
                         <i class="fa fa-trash"></i>
                     </button>
