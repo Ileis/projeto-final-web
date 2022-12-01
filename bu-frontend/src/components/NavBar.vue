@@ -1,9 +1,16 @@
 <template>
   <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
     <div class="container">
+
       <router-link to="/" class="navbar-brand">
         <i class="fa fa-mobile me-1"></i>BU</router-link
       >
+
+      <!-- Botão de logar quando está deslogado e botão de deslogar quando está logado  -->
+      <!-- a tela de login vai permitir o cadastro -->
+      <button v-if="false" class="btn btn-primary btn-sm">Log-in</button>
+      <button v-else class="btn btn-danger btn-sm">Log-out</button>
+
     </div>
   </nav>
 </template>

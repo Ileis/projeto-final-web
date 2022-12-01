@@ -6,16 +6,20 @@
       <div class="col">
         <p class="h3 text-dark fw-bold">
           Filme
-          <router-link to="/movies/add" class="btn btn-dark btn-sm"
+
+          <!-- Botão de adicionar filme somente quando está logado -->
+          <router-link to="/movies/add" class="btn btn-dark btn-sm" v-show="true"
             ><i class="fa fa-plus-circle me-2"></i>Novo</router-link
           >
+
         </p>
         <p class="fst-italic">
           Adicione um novo filme de terror para curtir com seus amigos e
           familiares em uma noite macabra de terror e thriller com os piores
           vilões do cinema.
         </p>
-        <form>
+
+        <!-- <form>
           <div class="row">
             <div class="col-md-6">
               <div class="row">
@@ -32,7 +36,8 @@
               </div>
             </div>
           </div>
-        </form>
+        </form> -->
+
       </div>
     </div>
   </div>
