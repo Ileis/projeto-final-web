@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+
+    <!-- Header -->
     <div class="container mt-3">
       <div class="row">
         <div class="col">
@@ -33,7 +35,6 @@
     </div>
 
     <!-- ErrorMessage -->
-
     <div v-if="!loading && errorMessage">
       <div class="container mt-3">
         <div class="row">
@@ -47,96 +48,37 @@
     <!-- <div class="container" v-if="!loading && isDone()"> -->
 
     <div class="container">
+
       <!-- MovieCard -->
-      <div class="row">
-        <div class="col-md-12">
-          <div
-            class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-white"
-          >
-            <div class="col p-4 d-flex flex-column position-static">
-              <strong class="d-inline-block mb-2 text-black-50">{{
-                movie.attributes.title
-              }}</strong>
-              <h3 class="mb-0">{{ movie.attributes.titleBr }}</h3>
-              <div class="mb-4 text-muted">
-                {{ movie.attributes.description }}
-              </div>
-
-              <dl class="row">
-                <dt class="col-sm-3">Gênero</dt>
-                <dd class="col-sm-9">{{ movie.attributes.genre }}</dd>
-
-                <dt class="col-sm-3">Estúdio</dt>
-                <dd class="col-sm-9">{{ movie.attributes.studio }}</dd>
-
-                <dt class="col-sm-3">Diretor</dt>
-                <dd class="col-sm-9">{{ movie.attributes.director }}</dd>
-
-                <dt class="col-sm-3">Ano</dt>
-                <dd class="col-sm-9">{{ movie.attributes.year }}</dd>
-
-                <dt class="col-sm-3">Duração</dt>
-                <dd class="col-sm-9">{{ movie.attributes.duration }} min</dd>
-
-                <dt class="col-sm-3">
-                  Gostei <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                </dt>
-                <dd class="col-sm-9">{{ movie.attributes.userLike }}</dd>
-
-                <dt class="col-sm-3">
-                  Não gostei
-                  <i class="fa fa-thumbs-down" aria-hidden="true"></i>
-                </dt>
-                <dd class="col-sm-9">{{ movie.attributes.userNotLike }}</dd>
-              </dl>
-            </div>
-            <div class="col-auto d-none d-lg-block">
-              <img
-                width="300"
-                height="100%"
-                :src="movie.attributes.imgSrc"
-                class="contact-img-big"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <BigMovieCard
+      :description="movie.attributes.description"
+      :director="movie.attributes.director"
+      :duration="movie.attributes.duration"
+      :genre="movie.attributes.genre"
+      :imgSrc="movie.attributes.imgSrc"
+      :studio="movie.attributes.studio"
+      :title="movie.attributes.title"
+      :titleBr="movie.attributes.titleBr"
+      :userLike="movie.attributes.userLike"
+      :userNotLike="movie.attributes.userNotLike"
+      :year="movie.attributes.year"
+      />
 
       <!-- Comment -->
       <div class="row" v-if="comments.length > 0">
         <div class="col-md-12" v-for="comment in comments" :key="comment">
           <div class="card mb-4" v-if="checkComments(comment, movieId)">
-            <div class="card-header">ID: #{{ comment.id }}</div>
-            <div class="card-body">
-              <blockquote class="blockquote mb-0">
-                <p>{{ comment.attributes.comment }}</p>
-                <footer>
-                  <button
-                    type="submit"
-                    class="btn btn-dark"
-                    v-on:click="isLikeComment(comment)"
-                  >
-                    <i class="fa fa-heart" v-if="comment.attributes.liked"></i>
-                    <i
-                      class="fa fa-heartbeat"
-                      v-if="!comment.attributes.liked"
-                    ></i>
-                  </button>
-                  <button
-                    class="btn btn-info my-1"
-                    @click="openCloseModalEdit(comment.attributes, comment.id)"
-                  >
-                    <i class="fa fa-pen"></i>
-                  </button>
-                  <button
-                    class="btn btn-danger my-1"
-                    @click="clickDeleteComment(comment.id)"
-                  >
-                    <i class="fa fa-trash"></i>
-                  </button>
-                </footer>
-              </blockquote>
-            </div>
+
+            <CommentLayout
+            :clickDeleteComment="clickDeleteComment"
+            :comment="comment"
+            :commentText="comment.attributes.comment"
+            :id="comment.id"
+            :isLikeComment="isLikeComment"
+            :liked="comment.attributes.liked"
+            :openCloseModalEdit="openCloseModalEdit"
+            />
+
           </div>
         </div>
       </div>
@@ -272,10 +214,12 @@
 <script>
 import { MovieService, CommentService } from "@/services/MovieServices";
 import SpinnerBar from "@/components/SpinnerBar.vue";
+import BigMovieCard from "@/components/BigMovieCard.vue";
+import CommentLayout from "@/components/CommentLayout.vue"
 
 export default {
   name: "ViewMovie",
-  components: { SpinnerBar },
+  components: { SpinnerBar, BigMovieCard, CommentLayout},
   data: function () {
     return {
       movieId: this.$route.params.movieId,

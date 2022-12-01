@@ -12,18 +12,18 @@
               <div class="d-flex justify-content-center align-items-center">
                 <router-link
                   :to="`/movies/view/${id}`"
-                  class="btn btn-warning my-1"
+                  class="btn btn-warning my-1 mx-1"
                 >
                   <i class="fa fa-eye"></i>
                 </router-link>
                 <router-link
                   :to="`/movies/edit/${id}`"
-                  class="btn btn-info my-1"
+                  class="btn btn-info my-1 mx-1"
                 >
                   <i class="fa fa-pen"></i>
                 </router-link>
                 <button
-                  class="btn btn-danger my-1"
+                  class="btn btn-danger my-1 mx-1"
                   @click="clickDeleteMovie(id)"
                 >
                   <i class="fa fa-trash"></i>
