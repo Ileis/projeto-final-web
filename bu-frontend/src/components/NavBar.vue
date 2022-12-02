@@ -1,16 +1,120 @@
 <template>
-  <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+  <nav :class="baseNavContrast">
     <div class="container">
-      <router-link to="/" class="navbar-brand">
+      <router-link
+        to="/"
+        class="nav-brand text-decoration-none"
+        :class="[`fs-${isFontSize}`, `text-${baseContrast}`]"
+      >
         <i class="fa fa-mobile me-1"></i>BU</router-link
       >
+
+      <router-link
+        to="/about"
+        class="nav-brand text-decoration-none"
+        :class="[`fs-${isFontSize}`, `text-${baseContrast}`]"
+      >
+        <i class="fa fa-info-circle me-1"></i>SOBRE
+      </router-link>
+
+      <router-link
+        to="/contact"
+        class="nav-brand text-decoration-none"
+        :class="[`fs-${isFontSize}`, `text-${baseContrast}`]"
+      >
+        <i class="fa fa-phone me-1"></i>CONTATO
+      </router-link>
+
+      <div class="dropdown">
+        <button :class="baseBtnContrast" @click.stop.prevent="toggle()">
+          Acessibilidade
+        </button>
+        <div v-show="isOpen">
+          <ul class="list-unstyled">
+            <li>
+              <button :class="baseBtnContrast" @click="plusFont()">A +</button>
+            </li>
+            <li>
+              <button :class="baseBtnContrast" @click="minusFont()">A -</button>
+            </li>
+            <li>
+              <button :class="baseBtnContrast" @click="onContrast()">
+                Claro/Escuro
+              </button>
+            </li>
+            <li>
+              <button :class="baseBtnContrast" @click="onProtanopia()">
+                Protanopia
+              </button>
+            </li>
+            <li>
+              <button :class="baseBtnContrast" @click="onDeuteranopia()">
+                Deuteranopia
+              </button>
+            </li>
+            <li>
+              <button :class="baseBtnContrast" @click="onTritanopia()">
+                Tritanopia
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </nav>
 </template>
 
 <script>
 export default {
+  props: ["isTextContrast", "isNavContrast", "isFontSize"],
   name: "NavBar",
+  data: function () {
+    return {
+      isOpen: false,
+    };
+  },
+  computed: {
+    baseContrast() {
+      return this.isTextContrast;
+    },
+    baseNavContrast() {
+      return [
+        "navbar",
+        "navbar-expand-sm",
+        `navbar-${this.isNavContrast}`,
+        `bg-${this.isNavContrast}`,
+      ];
+    },
+    baseBtnContrast() {
+      return ["btn", "text-decoration-none", `text-${this.isTextContrast}`];
+    },
+  },
+  methods: {
+    toggle() {
+      this.isOpen = !this.isOpen;
+    },
+    plusFont() {
+      this.$emit("plus-font");
+    },
+    minusFont() {
+      this.$emit("minus-font");
+    },
+    onContrast() {
+      this.$emit("contrast");
+    },
+    onProtanopia() {
+      this.$emit("protanopia");
+    },
+    onDeuteranopia() {
+      this.$emit("deuteranopia");
+    },
+    onTritanopia() {
+      this.$emit("tritanopia");
+    },
+    onFontSize() {
+      this.isFontSize;
+    },
+  },
 };
 </script>
 

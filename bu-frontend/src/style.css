@@ -2,7 +2,15 @@
 
 body {
   font-family: "Ubuntu", sans-serif !important;
+  /* background-color: #e4e4e4 !important; */
+}
+
+.color-body-primary {
   background-color: #e4e4e4 !important;
+}
+
+.color-body-contrast {
+  background-color: #252525 !important;
 }
 
 .contact-img {
@@ -14,3 +22,161 @@ body {
   width: 300px;
   height: 100%;
 }
+
+/* Protanopia - Text */
+.dal-prota-t1 {
+  color: #ef79bd;
+}
+
+.dal-prota-t2 {
+  color: #25c0d0;
+}
+
+.dal-prota-t3 {
+  color: #00c601;
+}
+
+.dal-prota-t4 {
+  color: #f8b497;
+}
+
+/* Protanopia - BG */
+.dal-prota-bg1 {
+  background-color: #ef79bd;
+}
+
+.dal-prota-bg2 {
+  background-color: #25c0d0;
+}
+
+.dal-prota-bg3 {
+  background-color: #007700;
+  /* background-color: #00c601; */
+}
+
+.dal-prota-bg4 {
+  background-color: #f8b497;
+}
+
+/* Protanopia - Hover */
+/* .dal-prota-bg1:hover {
+  background-color: #944975;
+}
+
+.dal-prota-bg2:hover {
+  background-color: #156d77;
+}
+
+ .dal-prota-bg3:hover {
+  background-color: #007700;
+} 
+
+.dal-prota-bg4:hover {
+  background-color: #886353;
+} */
+
+/* Deuteranopia - Text */
+.dal-deute-t1 {
+  color: #efb2cb;
+}
+
+.dal-deute-t2 {
+  color: #249ac6;
+}
+
+.dal-deute-t3 {
+  color: #01a100;
+}
+
+.dal-deute-t4 {
+  color: #f9d3a3;
+}
+
+/* Deuteranopia - BG */
+
+.dal-deute-bg1 {
+  background-color: #efb2cb;
+}
+
+.dal-deute-bg2 {
+  background-color: #249ac6;
+}
+
+.dal-deute-bg3 {
+  background-color: #006400;
+  /* background-color: #01a100; */
+}
+
+.dal-deute-bg4 {
+  background-color: #f9d3a3;
+}
+
+/* Deuteranopia - HOVER */
+
+/* .dal-deute-bg1:hover {
+  background-color: #7a5967;
+}
+
+.dal-deute-bg2:hover {
+  background-color: #186683;
+}
+
+.dal-deute-bg3:hover {
+  background-color: #006400;
+}
+
+.dal-deute-bg4:hover {
+  background-color: #7c6951;
+} */
+
+/* Tritanopia - Text */
+.dal-trita-t1 {
+  color: #ee01ff;
+}
+
+.dal-trita-t2 {
+  color: #25e100;
+}
+
+.dal-trita-t3 {
+  color: #01ea01;
+}
+
+.dal-trita-t4 {
+  color: #f98cfe;
+}
+
+/* Tritanopia - BG */
+.dal-trita-bg1 {
+  background-color: #ee01ff;
+}
+
+.dal-trita-bg2 {
+  background-color: #25e100;
+}
+
+.dal-trita-bg3 {
+  background-color: #01a100;
+  /* background-color: #01ea01; */
+}
+
+.dal-trita-bg4 {
+  background-color: #f98cfe;
+}
+
+/* Tritanopia - Hover */
+/* .dal-trita-bg1:hover {
+  background-color: #90009b;
+}
+
+.dal-trita-bg2:hover {
+  background-color: #147900;
+}
+
+.dal-trita-bg3:hover {
+  background-color: #006100;
+}
+
+.dal-trita-bg4:hover {
+  background-color: #834a86;
+} */

@@ -2,13 +2,34 @@
   <div class="container mt-3">
     <div class="row">
       <div class="col">
-        <p class="h3 text-dark fw-bold">
+        <p
+          class="h3 fw-bold"
+          :class="[
+            `text-${baseTextContrast}`,
+            `fs-${baseFontSize}`,
+            `text-color: ${baseDaltonism.t3}`,
+          ]"
+        >
           Filme
-          <router-link to="/movies/add" class="btn btn-dark btn-sm"
+          <router-link
+            to="/movies/add"
+            class="btn btn-sm"
+            :class="[
+              `btn-${baseBgContrast}`,
+              `fs-${baseFontSize}`,
+              `background-color: ${baseDaltonism.bg3}`,
+            ]"
             ><i class="fa fa-plus-circle me-2"></i>Novo</router-link
           >
         </p>
-        <p class="fst-italic">
+        <p
+          class="fst-italic"
+          :class="[
+            `text-${baseTextContrast}`,
+            `fs-${baseFontSize}`,
+            `text-color: ${baseDaltonism.t3}`,
+          ]"
+        >
           Adicione um novo filme de terror para curtir com seus amigos e
           familiares em uma noite macabra de terror e thriller com os piores
           vilões do cinema.
@@ -25,7 +46,15 @@
                   />
                 </div>
                 <div class="col">
-                  <input type="submit" class="btn btn-outline-dark" />
+                  <input
+                    type="submit"
+                    class="btn"
+                    :class="[
+                      `btn-${baseBgContrast}`,
+                      `fs-${baseFontSize}`,
+                      `background-color: ${baseDaltonism.bg1}`,
+                    ]"
+                  />
                 </div>
               </div>
             </div>
@@ -66,9 +95,24 @@
         :key="movie"
       >
         <div class="col">
-          <div class="card mb-4 rounded-3 shadow-sm">
+          <div
+            class="card mb-4 rounded-3 shadow-sm"
+            :class="[
+              `bg-${baseBgContrast}`,
+              `background-color: ${baseDaltonism.bg3}`,
+            ]"
+          >
             <div class="card-header py-3">
-              <h4 class="my-0 fw-normal">{{ movie.attributes.title }}</h4>
+              <h4
+                class="my-0 fw-normal"
+                :class="[
+                  `text-${baseTextContrast}`,
+                  `fs-${baseFontSize}`,
+                  `text-color: ${baseDaltonism.t4}`,
+                ]"
+              >
+                {{ movie.attributes.title }}
+              </h4>
             </div>
             <div class="card-body">
               <img
@@ -79,18 +123,24 @@
                 <router-link
                   :to="`/movies/view/${movie.id}`"
                   class="btn btn-warning my-1"
+                  title="Visualizar filme"
+                  :class="[`background-color: ${baseDaltonism.bg1}`]"
                 >
                   <i class="fa fa-eye"></i>
                 </router-link>
                 <router-link
                   :to="`/movies/edit/${movie.id}`"
                   class="btn btn-info my-1"
+                  title="Editar filme"
+                  :class="[`background-color: ${baseDaltonism.bg2}`]"
                 >
                   <i class="fa fa-pen"></i>
                 </router-link>
                 <button
                   class="btn btn-danger my-1"
                   @click="clickDeleteMovie(movie.id)"
+                  title="Deletar filme"
+                  :class="[`background-color: ${baseDaltonism.bg3}`]"
                 >
                   <i class="fa fa-trash"></i>
                 </button>
@@ -108,6 +158,13 @@ import { MovieService } from "@/services/MovieServices";
 import SpinnerBar from "../components/SpinnerBar.vue";
 
 export default {
+  props: [
+    "isTextContrast",
+    "isBgContrast",
+    "isFontSize",
+    "isDaltonism",
+    "isTypeDaltonism",
+  ],
   name: "MovieManager",
   components: { SpinnerBar },
   data: function () {
@@ -127,6 +184,28 @@ export default {
       this.errorMessage = error;
       this.loading = false;
     }
+  },
+  computed: {
+    baseTextContrast() {
+      return this.isTextContrast;
+    },
+    baseBgContrast() {
+      return this.isBgContrast;
+    },
+    baseFontSize() {
+      return this.isFontSize;
+    },
+    baseDaltonism() {
+      if (this.isTypeDaltonism == "protanopia") {
+        return this.isDaltonism.isProtanopia;
+      } else if (this.isTypeDaltonism === "deuteranopia") {
+        return this.isDaltonism.isDeuteranopia;
+      } else if (this.isTypeDaltonism === "tritanopia") {
+        return this.isDaltonism.isTritanopia;
+      } else {
+        return {};
+      }
+    },
   },
   methods: {
     clickDeleteMovie: async function (movieId) {
