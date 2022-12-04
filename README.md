@@ -68,9 +68,9 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 | POST | /api/movies | Movie
 | PUT | /api/movies/{id} | Movie
 | DELETE | /api/movies/{id} | Movie
-| GET | /api/comments | Comments
-| GET | /api/comments/{id} | Comments
-| POST | /api/comments | Comments
-| PUT | /api/comments/{id} | Comments
-| DELETE | /api/comments/{id} | Comments
+| GET | /api/comments | Comment
+| GET | /api/comments/{id} | Comment
+| POST | /api/comments | Comment
+| PUT | /api/comments/{id} | Comment
+| DELETE | /api/comments/{id} | Comment
 
