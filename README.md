@@ -52,7 +52,7 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 
 | Entidade| Criação | Leitura | Atualização | Remoção |
 | --- | --- | --- | --- | --- |
-| User |  |   |  |  |
+| User | X |   |  |  |
 | Movie | X |  X  |  X | X |
 | Comment  | X |  X  | X | X |
 
