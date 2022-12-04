@@ -14,19 +14,35 @@ export class MovieService {
     return axios.get(dataURL);
   }
 
-  static createMovie(movie) {
+  static createMovie(movie, token) {
     let dataURL = `${this.serverURL}/api/movies`;
-    return axios.post(dataURL, movie);
+    return axios.post(dataURL, movie,
+       {
+          headers:{
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
   }
 
-  static updateMovie(movie, movieId) {
+  static updateMovie(movie, movieId, token) {
     let dataURL = `${this.serverURL}/api/movies/${movieId}`;
-    return axios.put(dataURL, movie);
+    return axios.put(dataURL, movie, 
+      {
+      headers:{
+        Authorization: `Bearer ${token}`,
+      }
+    });
   }
 
-  static deleteMovie(movieId) {
+  static deleteMovie(movieId, token) {
     let dataURL = `${this.serverURL}/api/movies/${movieId}`;
-    return axios.delete(dataURL);
+    return axios.delete(dataURL,
+      {
+        headers:{
+          Authorization: `Bearer ${token}`,
+        }
+      });
   }
 }
 
@@ -54,9 +70,15 @@ export class CommentService {
     return axios.put(dataURL, comment);
   }
 
-  static deleteComment(commentId) {
+  static deleteComment(commentId, token) {
     let dataURL = `${this.serverURL}/api/comments/${commentId}`;
-    return axios.delete(dataURL);
+    return axios.delete(dataURL, 
+      {
+        headers:{
+          Authorization: `Bearer ${token}`,
+        }
+      }
+      );
   }
 }
 
@@ -72,4 +94,13 @@ export class UserService {
     let dataURL = `${this.serverURL}/api/auth/local`;
     return axios.post(dataURL, user);
   }
+
+  // static getMe(token){
+  //   let dataURL = `${this.serverURL}/api/users/me`;
+  //   return axios.get(dataURL, {
+  //     headers:{
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   })
+  // }
 }

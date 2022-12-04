@@ -22,7 +22,7 @@
 
               <div class="col-12">
                 <label>Senha</label>
-                <input type="password" class="form-control" v-model="user.password" placeholder="Senha"/>
+                <input type="password" class="form-control" v-model="user.password" placeholder="Senha" minlength="8"/>
               </div>
 
               <div>

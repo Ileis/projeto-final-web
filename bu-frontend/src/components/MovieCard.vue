@@ -29,7 +29,7 @@
                 <router-link
                   :to="`/movies/edit/${id}`"
                   class="btn btn-info my-1 mx-1"
-                  v-show="true"
+                  v-show="store.logged"
                 >
                   <i class="fa fa-pen"></i>
                 </router-link>
@@ -37,8 +37,8 @@
                 <!-- Delete Movie -->
                 <button
                   class="btn btn-danger my-1 mx-1"
-                  @click="clickDeleteMovie(id)"
-                  v-show="true"
+                  @click="clickDeleteMovie(id, this.store.jwt)"
+                  v-show="store.logged"
                 >
                   <i class="fa fa-trash"></i>
                 </button>
@@ -51,8 +51,17 @@
 
 <script>
 
+import { userStore } from "../store/storeUser";
+
     export default{
         name: 'MovieCard',
-        props:['title','imgSrc', 'img', 'id', 'clickDeleteMovie']
+        props:['title','imgSrc', 'img', 'id', 'clickDeleteMovie'],
+        data(){
+         const store = userStore();
+
+         return{
+          store
+         }
+        }
     }
 </script>

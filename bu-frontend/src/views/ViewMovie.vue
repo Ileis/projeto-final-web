@@ -336,10 +336,10 @@ export default {
         console.log(error);
       }
     },
-    clickDeleteComment: async function (commentId) {
+    clickDeleteComment: async function (commentId, token) {
       try {
         this.loading = true;
-        let response = await CommentService.deleteComment(commentId);
+        let response = await CommentService.deleteComment(commentId, token);
         if (response) {
           let response = await CommentService.getAllComments();
           this.comments = response.data.data;

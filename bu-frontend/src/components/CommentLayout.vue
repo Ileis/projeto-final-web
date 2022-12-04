@@ -33,8 +33,8 @@
                     <!-- Delete comment -->
                     <button
                         class="btn btn-danger m-1"
-                        @click="clickDeleteComment(id)"
-                        v-show="true">
+                        @click="clickDeleteComment(id, this.store.jwt)"
+                        v-show="store.logged">
                         <i class="fa fa-trash"></i>
                     </button>
                 </footer>
@@ -45,9 +45,17 @@
 
 <script>
 
+import { userStore } from "../store/storeUser";
+
     export default{
         name: 'CommentLayout',
-        props: ['id', 'commentText', 'comment', 'liked', 'isLikeComment', 'openCloseModalEdit', 'clickDeleteComment']
+        props: ['id', 'commentText', 'comment', 'liked', 'isLikeComment', 'openCloseModalEdit', 'clickDeleteComment'],
+        data(){
+            const store = userStore()
+
+            return { store }
+        }
+        
     }
 
 </script>

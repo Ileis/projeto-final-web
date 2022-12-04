@@ -9,7 +9,7 @@
             Filme
 
             <!-- Botão de adicionar filme somente quando está logado -->
-            <router-link to="/movies/add" class="btn btn-dark btn-sm" v-show="true"
+            <router-link to="/movies/add" class="btn btn-dark btn-sm" v-show="store.logged"
               ><i class="fa fa-plus-circle me-2"></i>Novo</router-link
             >
 
@@ -86,16 +86,22 @@
 <script>
 import { MovieService } from "@/services/MovieServices";
 import SpinnerBar from "../components/SpinnerBar.vue";
-import MovieCard from "../components/MovieCard.vue"
+import MovieCard from "../components/MovieCard.vue";
+import { userStore } from "../store/storeUser"
+// import { use } from 'vue/types/umd';
 
 export default {
   name: "MovieManager",
   components: { SpinnerBar , MovieCard},
   data: function () {
+
+    const store = userStore();
+
     return {
       loading: false,
       movies: [],
       errorMessage: null,
+      store
     };
   },
   created: async function () {
@@ -110,10 +116,10 @@ export default {
     }
   },
   methods: {
-    clickDeleteMovie: async function (movieId) {
+    clickDeleteMovie: async function (movieId, token) {
       try {
         this.loading = true;
-        let response = await MovieService.deleteMovie(movieId);
+        let response = await MovieService.deleteMovie(movieId, token);
         if (response) {
           console.log("Deletado com sucesso");
           let response = await MovieService.getAllMovies();

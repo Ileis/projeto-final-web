@@ -1,6 +1,7 @@
 <template>
   <div class="container mt-3 mb-3">
-    <div class="row g-5 d-flex justify-content-center">
+    <template v-if="store.logged">
+      <div class="row g-5 d-flex justify-content-center">
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Editar Filme</h4>
         <div class="card p-4">
@@ -160,16 +161,27 @@
         />
       </div> -->
     </div>
+    </template>
+
+    <template v-else>
+      <div class="row g-5 d-flex justify-content-center">
+        <div class="col-md-7 col-lg-8">
+          <h1>O usuário precisa estar logado para editar filmes.</h1>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
 import { MovieService } from "@/services/MovieServices";
+import { userStore } from "../store/storeUser";
 
 export default {
   name: "EditMovie",
   data: function () {
     return {
+      store: userStore(),
       movieId: this.$route.params.movieId,
       loading: false,
       movie: {
@@ -238,7 +250,7 @@ export default {
           },
         };
 
-        let response = await MovieService.updateMovie(payload, this.movieId);
+        let response = await MovieService.updateMovie(payload, this.movieId, this.store.jwt);
 
         if (response) {
           return this.$router.push("/");

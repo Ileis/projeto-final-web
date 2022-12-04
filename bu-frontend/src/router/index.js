@@ -4,7 +4,7 @@ import MovieManager from "../views/MovieManager.vue";
 import AddMovie from "../views/AddMovie.vue";
 import EditMovie from "../views/EditMovie.vue";
 import ViewMovie from "../views/ViewMovie.vue";
-import DevelopView from "../views/DevelopView.vue";
+// import DevelopView from "../views/DevelopView.vue";
 import PageNotFound from "../views/PageNotFound.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import LoginView from "@/views/LoginView.vue"
@@ -35,11 +35,6 @@ const routes = [
     path: "/movies/view/:movieId",
     name: "ViewMovie",
     component: ViewMovie,
-  },
-  {
-    path: "/dev",
-    name: "DevelopView",
-    component: DevelopView,
   },
   {
     path: "/:pathMatch(.*)*",

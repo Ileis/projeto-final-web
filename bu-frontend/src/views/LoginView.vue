@@ -16,7 +16,7 @@
 
                 <div class="col-12">
                     <label>Senha</label>
-                    <input type="password" class="form-control" v-model="user.password" placeholder="Senha"/>
+                    <input type="password" class="form-control" v-model="user.password" placeholder="Senha" minlength="8"/>
                 </div>
 
                 <div class="col-align-self-center">
@@ -52,7 +52,6 @@
     export default{
         name: 'LoginView',
         data: function(){
-
             const store = userStore();
 
             return {
@@ -61,6 +60,11 @@
                     password: ""
                 },
                 store
+            }
+        },
+        computed:{
+            userToken: () => {
+              return this.store.jwt;
             }
         },
         methods:{
@@ -72,6 +76,10 @@
                     console.log(response);
 
                     if(response){
+                        const me = response.data.user;
+                        const token = response.data.jwt;
+
+                        this.store.setUser(me.email, me.username, token);
 
                         return this.$router.push("/");
                     }else{

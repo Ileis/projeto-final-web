@@ -6,7 +6,7 @@
         <i class="fa fa-mobile me-1"></i>BU</router-link
       >
 
-      <span class="">Bem vindo, {{store.user.username}}</span>
+      <span class="">Bem vindo, {{store.getUsername}}!</span>
 
 
       <!-- Botão de logar quando está deslogado e botão de deslogar quando está logado  -->
@@ -15,13 +15,14 @@
       <router-link
         to="/user/login"
         class="btn btn-primary my-1 mx-1"
-        v-show="true"
-      >
-      Login
+        v-if="!store.logged">
+          Login
       </router-link>
 
+      <button v-else class="btn btn-danger" @click="store.logOutUser">Sair</button>
+
+
       <!-- <button v-if="false" class="btn btn-primary btn-sm">Log-in</button> -->
-      <!-- <button v-else class="btn btn-danger btn-sm">Log-out</button> -->
 
     </div>
   </nav>
