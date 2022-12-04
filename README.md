@@ -61,7 +61,7 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 ## :neckbeard: Rotas da API REST utilizadas
 
 | Método HTTP | URL | Entidade
-| --- | --- |
+| --- | --- | --- |
 | POST | /auth/local | User
 | GET | /api/movies | Movie
 | GET | /api/movies/{id} | Movie
