@@ -64,7 +64,12 @@ export class UserService {
   static serverURL = `http://127.0.0.1:1337`;
 
   static createUser(user){
-    let dataURL = `${this.serverURL}/api/users`;
+    let dataURL = `${this.serverURL}/api/auth/local/register`;
+    return axios.post(dataURL, user);
+  }
+
+  static loginUser(user){
+    let dataURL = `${this.serverURL}/api/auth/local`;
     return axios.post(dataURL, user);
   }
 }

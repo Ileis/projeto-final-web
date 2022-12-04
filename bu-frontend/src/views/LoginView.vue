@@ -4,31 +4,23 @@
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Login</h4>
         <div class="card p-4">
-          <form @submit.prevent="">
+          <form @submit.prevent="submitLogin">
 
             <div class="row g-3">
 
-              <div class="col-sm-12">
-                <label class="form-label">Email</label>
-                <input
-                  v-model="user.email"
-                  required
-                  type="text"
-                  class="form-control"
-                  placeholder="Email"
-                />
-              </div>
+                <div class="col-sm-12">
+                    <label>Email</label>
+                    <input type="email" class="form-control" v-model="user.identifier" placeholder="Email"/>
+                </div>
 
-              <div class="col-12">
-                <label class="form-label">Senha</label>
-                <input
-                  v-model="user.senha"
-                  required
-                  type="text"
-                  class="form-control"
-                  placeholder="Senha"
-                />
-              </div>
+                <div class="col-12">
+                    <label>Senha</label>
+                    <input type="password" class="form-control" v-model="user.password" placeholder="Senha"/>
+                </div>
+
+                <div class="col-align-self-center">
+                    <button class="btn btn-primary">Login</button>
+                </div>
 
               <div class="col-12">
                 <label class="form-label">Registrar uma nova conta</label>
@@ -52,15 +44,37 @@
 </template>
 
 <script>
+
+    import { UserService } from '@/services/MovieServices';
+
     export default{
         name: 'LoginView',
         data: function(){
             return {
                 user: {
-
+                    identifier: "",
+                    password: ""
                 }
             }
         },
-        
+        methods:{
+            submitLogin: async function(){
+                const userData = this.user;
+
+                try{
+                    let response = await UserService.loginUser(userData);
+                    console.log(response)
+                    if(response){
+                        return this.$router.push("/");
+                    }else{
+                        return this.$router.push("user/login");
+                    }
+                }catch(error){
+                    console.log(error);
+                }
+
+            }
+        }
+
     }
 </script>

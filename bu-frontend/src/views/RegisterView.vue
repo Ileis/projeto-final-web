@@ -25,11 +25,6 @@
                 <input type="password" class="form-control" v-model="user.password" placeholder="Senha"/>
               </div>
 
-              <!-- <div class="col-12">
-                <label>Confirmar senha</label>
-                <input type="password" class="form-control" v-model="user.passwordConfirm" placeholder="Confirmar senha"/>
-              </div> -->
-
               <div>
                 <button class="btn btn-primary">Sign up</button>
               </div>
@@ -64,8 +59,9 @@ export default {
 
         try{
           let response = await UserService.createUser(userData);
+          console.log(response);
           if(response){
-            return this.$router.push("/");
+            return this.$router.push("/user/login");
           }else{
             return this.$router.push("/user/register");
           }
