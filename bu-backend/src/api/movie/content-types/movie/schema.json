@@ -4,7 +4,8 @@
   "info": {
     "singularName": "movie",
     "pluralName": "movies",
-    "displayName": "Movie"
+    "displayName": "Movie",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,34 +18,17 @@
     "titleBr": {
       "type": "string"
     },
-    "cover": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
-    },
     "imgSrc": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      "type": "string"
     },
     "description": {
       "type": "text"
     },
     "userLike": {
-      "type": "integer"
+      "type": "string"
     },
     "userNotLike": {
-      "type": "integer"
+      "type": "string"
     },
     "studio": {
       "type": "string"
@@ -56,6 +40,9 @@
       "type": "string"
     },
     "duration": {
+      "type": "string"
+    },
+    "genre": {
       "type": "string"
     }
   }

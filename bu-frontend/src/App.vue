@@ -1,7 +1,9 @@
 <template>
-  <NavBar />
-  <router-view />
-  <FooterBar />
+  <div>
+    <NavBar />
+    <router-view/>
+    <FooterBar />
+  </div>
 </template>
 
 <script>
@@ -12,5 +14,3 @@ export default {
   components: { NavBar, FooterBar },
 };
 </script>
-
-<style></style>
