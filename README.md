@@ -9,7 +9,6 @@ Bu! é uma base de dados grátis e de código aberto, sobre filmes e seriados, a
 
 ## :people_holding_hands: Papéis ou tipos de usuário da aplicação
 
-- Admin
 - Usuário logado
 - Visitante
 
@@ -53,20 +52,25 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 
 | Entidade| Criação | Leitura | Atualização | Remoção |
 | --- | --- | --- | --- | --- |
-| Usuário |  |  X  |  |  |
-| Filme | X |  X  |  X | X |
-| Comentário  | X |  X  | X | X |
+| User |  |   |  |  |
+| Movie | X |  X  |  X | X |
+| Comment  | X |  X  | X | X |
 
 > Lembre-se que é necessário implementar o CRUD de pelo menos duas entidades.
 
 ## :neckbeard: Rotas da API REST utilizadas
 
-| Método HTTP | URL |
+| Método HTTP | URL | Entidade
 | --- | --- |
-| POST | /auth/local |
-| GET | /users/me |
-| GET | /api/movies |
-| GET | /api/movies/{id} |
-| POST | /api/movies |
-| PUT | /api/movies/{id} |
-| DELETE | /api/movies/{id} |
+| POST | /auth/local | User
+| GET | /api/movies | Movie
+| GET | /api/movies/{id} | Movie
+| POST | /api/movies | Movie
+| PUT | /api/movies/{id} | Movie
+| DELETE | /api/movies/{id} | Movie
+| GET | /api/comments | Comments
+| GET | /api/comments/{id} | Comments
+| POST | /api/comments | Comments
+| PUT | /api/comments/{id} | Comments
+| DELETE | /api/comments/{id} | Comments
+
