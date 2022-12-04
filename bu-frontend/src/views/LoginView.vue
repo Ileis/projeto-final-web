@@ -2,6 +2,7 @@
         <div class="container mt-3 mb-3">
     <div class="row g-5 d-flex justify-content-center">
       <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Bem vindo</h4>
         <h4 class="mb-3">Login</h4>
         <div class="card p-4">
           <form @submit.prevent="submitLogin">
@@ -46,15 +47,20 @@
 <script>
 
     import { UserService } from '@/services/MovieServices';
+    import { userStore } from "../store/storeUser"
 
     export default{
         name: 'LoginView',
         data: function(){
+
+            const store = userStore();
+
             return {
                 user: {
                     identifier: "",
                     password: ""
-                }
+                },
+                store
             }
         },
         methods:{
@@ -66,6 +72,7 @@
                     console.log(response);
 
                     if(response){
+
                         return this.$router.push("/");
                     }else{
                         return this.$router.push("user/login");

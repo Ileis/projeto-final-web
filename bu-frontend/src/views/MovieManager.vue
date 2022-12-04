@@ -1,88 +1,86 @@
 <template>
-  <div class="container mt-3">
+  <div>
+      <div class="container mt-3">
 
-    <!-- Header -->
-    <div class="row">
-      <div class="col">
-        <p class="h3 text-dark fw-bold">
-          Filme
+      <!-- Header -->
+      <div class="row">
+        <div class="col">
+          <p class="h3 text-dark fw-bold">
+            Filme
 
-          <!-- Botão de adicionar filme somente quando está logado -->
-          <router-link to="/movies/add" class="btn btn-dark btn-sm" v-show="true"
-            ><i class="fa fa-plus-circle me-2"></i>Novo</router-link
-          >
+            <!-- Botão de adicionar filme somente quando está logado -->
+            <router-link to="/movies/add" class="btn btn-dark btn-sm" v-show="true"
+              ><i class="fa fa-plus-circle me-2"></i>Novo</router-link
+            >
 
-        </p>
-        <p class="fst-italic">
-          Adicione um novo filme de terror para curtir com seus amigos e
-          familiares em uma noite macabra de terror e thriller com os piores
-          vilões do cinema.
-        </p>
+          </p>
+          <p class="fst-italic">
+            Adicione um novo filme de terror para curtir com seus amigos e
+            familiares em uma noite macabra de terror e thriller com os piores
+            vilões do cinema.
+          </p>
 
-        <!-- <form>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="row">
-                <div class="col">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Pesquisar Filme"
-                  />
-                </div>
-                <div class="col">
-                  <input type="submit" class="btn btn-outline-dark" />
+          <!-- <form>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Pesquisar Filme"
+                    />
+                  </div>
+                  <div class="col">
+                    <input type="submit" class="btn btn-outline-dark" />
+                  </div>
                 </div>
               </div>
             </div>
+          </form> -->
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Spinner -->
+    <div v-if="loading">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <SpinnerBar />
           </div>
-        </form> -->
-
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Spinner -->
-  <div v-if="loading">
-    <div class="container">
+    <!-- ErrorMessage -->
+    <div v-if="!loading && errorMessage">
+      <div class="container mt-3">
+        <div class="row">
+          <div class="col">
+            <p class="h4 text-danger fw-bold">{{ errorMessage }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Movie Cards -->
+    <div class="container py-3" v-if="movies.length > 0">
       <div class="row">
-        <div class="col">
-          <SpinnerBar />
+        <div class="col-md-3 mb-3 text-center" v-for="movie in movies" :key="movie">
+
+          <MovieCard
+          :title="movie.attributes.title"
+          :imgSrc="movie.attributes.imgSrc"
+          :id="movie.id"
+          :clickDeleteMovie="clickDeleteMovie"
+          />
+
         </div>
       </div>
     </div>
   </div>
-
-  <!-- ErrorMessage -->
-  <div v-if="!loading && errorMessage">
-    <div class="container mt-3">
-      <div class="row">
-        <div class="col">
-          <p class="h4 text-danger fw-bold">{{ errorMessage }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Movie Cards -->
-  <div class="container py-3" v-if="movies.length > 0">
-    <div class="row">
-      <div
-        class="col-md-3 mb-3 text-center"
-        v-for="movie in movies"
-        :key="movie">
-
-        <MovieCard
-        :title="movie.attributes.title"
-        :imgSrc="movie.attributes.imgSrc"
-        :id="movie.id"
-        :clickDeleteMovie="clickDeleteMovie"
-        />
-
-      </div>
-    </div>
-  </div>
-
 </template>
 
 <script>
@@ -131,5 +129,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>

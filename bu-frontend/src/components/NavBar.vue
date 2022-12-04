@@ -6,6 +6,9 @@
         <i class="fa fa-mobile me-1"></i>BU</router-link
       >
 
+      <span class="">Bem vindo, {{store.user.username}}</span>
+
+
       <!-- Botão de logar quando está deslogado e botão de deslogar quando está logado  -->
       <!-- a tela de login vai permitir o cadastro -->
 
@@ -25,9 +28,24 @@
 </template>
 
 <script>
+
+import { userStore } from "../store/storeUser"
+
 export default {
   name: "NavBar",
+  data(){
+
+    const store = userStore();
+
+    return{
+      store
+    }
+  }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+span{
+  color: white;
+}
+</style>
