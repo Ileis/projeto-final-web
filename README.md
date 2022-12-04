@@ -20,9 +20,8 @@ Bu! é uma base de dados grátis e de código aberto, sobre filmes e seriados, a
 
 ## :triangular_flag_on_post:	 Principais funcionalidades da aplicação
 
-- O adminstrador da loja pode: adicionar, remover e editar os filmes.
-- Usuário registrador pode listar os filmes e seus detalhes, assim como usuários não registrados. Adicionalmente, eles podem escrever comentários sobre os filmes.
-- Usuário não registrador poderão ver os filmes e os comentários feitos por usuários registrados.
+- Usuário registrador pode: adicionar, remover e editar os filmes. Adicionalmente, eles podem remover os comentários sobre os filmes.
+- Usuário não registrador poderão ver os filmes e os comentar nos filmes.
 
 Descreve ou liste brevemente as principais funcionalidades da aplicação que será desenvolvida. Destaque a funcionalidades que serão acessévies a todos os usuários e aquelas restriras a usuários logados.
 
