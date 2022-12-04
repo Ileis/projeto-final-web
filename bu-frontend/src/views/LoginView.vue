@@ -63,7 +63,8 @@
 
                 try{
                     let response = await UserService.loginUser(userData);
-                    console.log(response)
+                    console.log(response);
+
                     if(response){
                         return this.$router.push("/");
                     }else{
@@ -72,9 +73,7 @@
                 }catch(error){
                     console.log(error);
                 }
-
             }
         }
-
     }
 </script>
