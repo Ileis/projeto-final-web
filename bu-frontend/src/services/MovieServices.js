@@ -59,3 +59,12 @@ export class CommentService {
     return axios.delete(dataURL);
   }
 }
+
+export class UserService {
+  static serverURL = `http://127.0.0.1:1337`;
+
+  static createUser(user){
+    let dataURL = `${this.serverURL}/api/users`;
+    return axios.post(dataURL, user);
+  }
+}

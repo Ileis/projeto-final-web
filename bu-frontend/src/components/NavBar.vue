@@ -8,8 +8,17 @@
 
       <!-- Botão de logar quando está deslogado e botão de deslogar quando está logado  -->
       <!-- a tela de login vai permitir o cadastro -->
-      <button v-if="false" class="btn btn-primary btn-sm">Log-in</button>
-      <button v-else class="btn btn-danger btn-sm">Log-out</button>
+
+      <router-link
+        to="/user/login"
+        class="btn btn-primary my-1 mx-1"
+        v-show="true"
+      >
+      Login
+      </router-link>
+
+      <!-- <button v-if="false" class="btn btn-primary btn-sm">Log-in</button> -->
+      <!-- <button v-else class="btn btn-danger btn-sm">Log-out</button> -->
 
     </div>
   </nav>

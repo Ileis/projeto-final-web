@@ -6,6 +6,8 @@ import EditMovie from "../views/EditMovie.vue";
 import ViewMovie from "../views/ViewMovie.vue";
 import DevelopView from "../views/DevelopView.vue";
 import PageNotFound from "../views/PageNotFound.vue";
+import RegisterView from "@/views/RegisterView.vue";
+import LoginView from "@/views/LoginView.vue"
 
 const routes = [
   {
@@ -44,6 +46,16 @@ const routes = [
     name: "PageNotFound",
     component: PageNotFound,
   },
+  {
+    path: "/user/register",
+    name: "RegisterView",
+    component: RegisterView,
+  },
+  {
+    path: "/user/login",
+    name: "LoginView",
+    component: LoginView,
+  }
 ];
 
 const router = createRouter({
