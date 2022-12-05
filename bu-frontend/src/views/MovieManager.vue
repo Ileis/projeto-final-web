@@ -1,20 +1,40 @@
 <template>
   <div>
-      <div class="container mt-3">
-
+    <div class="container mt-3">
       <!-- Header -->
       <div class="row">
         <div class="col">
-          <p class="h3 text-dark fw-bold">
+          <p
+            class="h3 text-dark fw-bold"
+            :class="[
+              `text-${baseTextContrast}`,
+              `fs-${baseFontSize}`,
+              `text-color: ${baseDaltonism.t3}`,
+            ]"
+          >
             Filme
 
             <!-- Botão de adicionar filme somente quando está logado -->
-            <router-link to="/movies/add" class="btn btn-dark btn-sm" v-show="store.logged"
+            <router-link
+              to="/movies/add"
+              class="btn btn-dark btn-sm"
+              v-show="store.logged"
+              :class="[
+                `btn-${baseBgContrast}`,
+                `fs-${baseFontSize}`,
+                `background-color: ${baseDaltonism.bg3}`,
+              ]"
               ><i class="fa fa-plus-circle me-2"></i>Novo</router-link
             >
-
           </p>
-          <p class="fst-italic">
+          <p
+            class="fst-italic"
+            :class="[
+              `text-${baseTextContrast}`,
+              `fs-${baseFontSize}`,
+              `text-color: ${baseDaltonism.t3}`,
+            ]"
+          >
             Adicione um novo filme de terror para curtir com seus amigos e
             familiares em uma noite macabra de terror e thriller com os piores
             vilões do cinema.
@@ -38,7 +58,6 @@
               </div>
             </div>
           </form> -->
-
         </div>
       </div>
     </div>
@@ -68,41 +87,131 @@
     <!-- Movie Cards -->
     <div class="container py-3" v-if="movies.length > 0">
       <div class="row">
-        <div class="col-md-3 mb-3 text-center" v-for="movie in movies" :key="movie">
+        <div
+          class="col-md-3 mb-3 text-center"
+          v-for="movie in movies"
+          :key="movie"
+        >
+          <div class="col">
+            <div
+              class="card mb-4 rounded-3 shadow-sm"
+              :class="[
+                `bg-${baseBgContrast}`,
+                `background-color: ${baseDaltonism.bg3}`,
+              ]"
+            >
+              <div class="card-header py-3">
+                <h4
+                  class="my-0 fw-normal"
+                  :class="[
+                    `text-${baseTextContrast}`,
+                    `fs-${baseFontSize}`,
+                    `text-color: ${baseDaltonism.t3}`,
+                  ]"
+                >
+                  {{ movie.attributes.title }}
+                </h4>
+              </div>
+              <div class="card-body">
+                <img
+                  class="bd-placeholder-img mb-4 contact-img"
+                  :src="movie.attributes.imgSrc"
+                />
 
-          <MovieCard
-          :title="movie.attributes.title"
-          :imgSrc="movie.attributes.imgSrc"
-          :id="movie.id"
-          :clickDeleteMovie="clickDeleteMovie"
-          />
+                <!-- Um usuário deslogado não poderá fazer nada além de ver a /home e logar -->
+                <!-- Um usuário padrão logado pode adicionar e ver filmes -->
+                <!-- Um usuário admin pode fazer o CRUD -->
+                <!-- Botões -->
+                <div class="d-flex justify-content-center align-items-center">
+                  <!-- View Movie -->
+                  <router-link
+                    :to="`/movies/view/${movie.id}`"
+                    class="btn btn-warning my-1 mx-1"
+                    v-show="true"
+                    :class="[`background-color: ${baseDaltonism.bg1}`]"
+                  >
+                    <i class="fa fa-eye"></i>
+                  </router-link>
 
+                  <!-- Edit Movie -->
+                  <router-link
+                    :to="`/movies/edit/${movie.id}`"
+                    class="btn btn-info my-1 mx-1"
+                    v-show="store.logged"
+                    :class="[`background-color: ${baseDaltonism.bg2}`]"
+                  >
+                    <i class="fa fa-pen"></i>
+                  </router-link>
+
+                  <!-- Delete Movie -->
+                  <button
+                    class="btn btn-danger my-1 mx-1"
+                    @click="clickDeleteMovie(movie.id, this.store.jwt)"
+                    v-show="store.logged"
+                    :class="[`background-color: ${baseDaltonism.bg3}`]"
+                  >
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Movie -->
   </div>
 </template>
 
 <script>
 import { MovieService } from "@/services/MovieServices";
 import SpinnerBar from "../components/SpinnerBar.vue";
-import MovieCard from "../components/MovieCard.vue";
-import { userStore } from "../store/storeUser"
+//import MovieCard from "../components/MovieCard.vue";
+import { userStore } from "../store/storeUser";
 // import { use } from 'vue/types/umd';
 
 export default {
   name: "MovieManager",
-  components: { SpinnerBar , MovieCard},
+  components: { SpinnerBar },
+  props: [
+    "isTextContrast",
+    "isBgContrast",
+    "isFontSize",
+    "isDaltonism",
+    "isTypeDaltonism",
+  ],
   data: function () {
-
     const store = userStore();
 
     return {
       loading: false,
       movies: [],
       errorMessage: null,
-      store
+      store,
     };
+  },
+  computed: {
+    baseTextContrast() {
+      return this.isTextContrast;
+    },
+    baseBgContrast() {
+      return this.isBgContrast;
+    },
+    baseFontSize() {
+      return this.isFontSize;
+    },
+    baseDaltonism() {
+      if (this.isTypeDaltonism == "protanopia") {
+        return this.isDaltonism.isProtanopia;
+      } else if (this.isTypeDaltonism === "deuteranopia") {
+        return this.isDaltonism.isDeuteranopia;
+      } else if (this.isTypeDaltonism === "tritanopia") {
+        return this.isDaltonism.isTritanopia;
+      } else {
+        return {};
+      }
+    },
   },
   created: async function () {
     try {
