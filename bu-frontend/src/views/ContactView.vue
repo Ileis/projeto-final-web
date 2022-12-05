@@ -24,7 +24,7 @@
               :class="[
                 `text-${baseTextContrast}`,
                 `fs-${baseFontSize}`,
-                `text-color: ${baseDaltonism.t1}`,
+                `text-color: ${baseDaltonism.t3}`,
               ]"
             >
               Contato
@@ -34,7 +34,7 @@
             :class="[
               `text-${baseTextContrast}`,
               `fs-${baseFontSize}`,
-              `text-color: ${baseDaltonism.t1}`,
+              `text-color: ${baseDaltonism.t3}`,
             ]"
           >
             <li>Av. Vicente monteggia, 926</li>

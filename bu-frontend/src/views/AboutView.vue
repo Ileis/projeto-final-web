@@ -23,7 +23,7 @@
                 :class="[
                   `text-${baseTextContrast}`,
                   `fs-${baseFontSize}`,
-                  `text-color: ${baseDaltonism.t1}`,
+                  `text-color: ${baseDaltonism.t3}`,
                 ]"
               >
                 Sobre
@@ -32,7 +32,7 @@
                 :class="[
                   `text-${baseTextContrast}`,
                   `fs-${baseFontSize}`,
-                  `text-color: ${baseDaltonism.t1}`,
+                  `text-color: ${baseDaltonism.t3}`,
                 ]"
               >
                 O que é Bu? BU é uma rede social global para discussão e
@@ -62,7 +62,7 @@
                 :class="[
                   `text-${baseTextContrast}`,
                   `fs-${baseFontSize}`,
-                  `text-color: ${baseDaltonism.t1}`,
+                  `text-color: ${baseDaltonism.t3}`,
                 ]"
               >
                 Por que é chamado BU?
@@ -71,7 +71,7 @@
                 :class="[
                   `text-${baseTextContrast}`,
                   `fs-${baseFontSize}`,
-                  `text-color: ${baseDaltonism.t1}`,
+                  `text-color: ${baseDaltonism.t3}`,
                 ]"
               >
                 O conceito BU tem como a prática de realizar a brincadeira de
@@ -105,7 +105,7 @@
                 :class="[
                   `text-${baseTextContrast}`,
                   `fs-${baseFontSize}`,
-                  `text-color: ${baseDaltonism.t1}`,
+                  `text-color: ${baseDaltonism.t3}`,
                 ]"
               >
                 Missão
@@ -115,7 +115,7 @@
               :class="[
                 `text-${baseTextContrast}`,
                 `fs-${baseFontSize}`,
-                `text-color: ${baseDaltonism.t1}`,
+                `text-color: ${baseDaltonism.t3}`,
               ]"
             >
               Promover, através de dados de filmes, o compartilhamento entre os
@@ -138,7 +138,7 @@
                 :class="[
                   `text-${baseTextContrast}`,
                   `fs-${baseFontSize}`,
-                  `text-color: ${baseDaltonism.t1}`,
+                  `text-color: ${baseDaltonism.t3}`,
                 ]"
               >
                 Visão
@@ -148,7 +148,7 @@
               :class="[
                 `text-${baseTextContrast}`,
                 `fs-${baseFontSize}`,
-                `text-color: ${baseDaltonism.t1}`,
+                `text-color: ${baseDaltonism.t3}`,
               ]"
             >
               Ser reconhecida como uma empresa parceira na interação e
@@ -171,7 +171,7 @@
                 :class="[
                   `text-${baseTextContrast}`,
                   `fs-${baseFontSize}`,
-                  `text-color: ${baseDaltonism.t1}`,
+                  `text-color: ${baseDaltonism.t3}`,
                 ]"
               >
                 Valores
@@ -182,7 +182,7 @@
               :class="[
                 `text-${baseTextContrast}`,
                 `fs-${baseFontSize}`,
-                `text-color: ${baseDaltonism.t1}`,
+                `text-color: ${baseDaltonism.t3}`,
               ]"
             >
               <li>Amizade</li>
